@@ -1,0 +1,130 @@
+# Our .tmux.conf file
+
+# Setting the prefix from C-b to C-a
+# START:prefix
+set -g prefix C-a  
+# END:prefix
+# Free the original Ctrl-b prefix keybinding
+# START:unbind
+unbind C-b 
+# END:unbind
+#setting the delay between prefix and command
+# START:delay
+# set -sg escape-time 0
+# END:delay
+# Ensure that we can send Ctrl-A to other apps
+# START:bind_prefix
+bind C-a send-prefix
+# END:bind_prefix
+
+# Set the base index for windows to 1 instead of 0
+# START:index
+set -g base-index 1
+# END:index
+
+set -g history-limit 10000
+
+unbind A
+bind A command-prompt "rename-window %%"
+
+# Set the base index for panes to 1 instead of 0
+# START:panes_index
+#setw -g pane-base-index 1
+# END:panes_index
+
+# Reload the file with Prefix r
+# START:reload
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+# END:reload
+
+# split panes using | and -
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind c new-window -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
+# moving between panes
+# START:paneselect
+bind h select-pane -L 
+bind j select-pane -D 
+bind k select-pane -U
+bind l select-pane -R    
+# END:paneselect
+
+unbind Tab
+bind Tab last-pane
+unbind BTab
+bind BTab last-pane
+
+# Quick pane selection
+# START:panetoggle
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+# END:panetoggle
+
+# Pane resizing
+# START:paneresize
+bind -r H resize-pane -L 5 
+bind -r J resize-pane -D 5 
+bind -r K resize-pane -U 5 
+bind -r L resize-pane -R 5
+# END:paneresize
+# mouse support - set to on if you want to use the mouse
+
+# Set the default terminal mode to 256color mode
+set -g default-terminal "screen-256color"
+
+# enable activity alerts
+setw -g monitor-activity on
+set -g visual-activity on
+
+# Set status bar
+set -g status-bg black
+set -g status-fg white
+
+setw -g window-status-format "#[fg=normal]#I:#W#F "
+
+# set colors for the active window
+# START:activewindowstatuscolor
+setw -g window-status-current-format "#[fg=red](#[fg=white]#I:#W#F#[fg=red]) "
+# END:activewindowstatuscolor
+
+# Status line right side
+# 15% | 28 Nov 18:15
+# START: statusright
+#set -g status-right "#[fg=cyan]%d %b %R"
+set -g status-right "#[fg=cyan]#(date -u +'%%F %%R')"
+set -g status-right "#[fg=green][ #[fg=cyan]#(date -u +'%%F %%R') #[fg=green]]"
+# END:statusright
+
+# Update the status bar every sixty seconds
+# START:updateinterval
+set -g status-interval 60
+# END:updateinterval
+
+# No delays
+set -s escape-time 1
+
+# Enable mouse mode (tmux 2.1 and above)
+# set -g mouse on
+
+# Center the window list
+# START:centerwindowlist
+set -g status-justify left
+# END:centerwindowlist
+
+# enable vi keys.
+# START:vikeys
+setw -g mode-keys vi
+# END:vikeys
+
+# ok, now set up the zoom functionality..
+unbind O
+bind O new-window -d -n tmux-zoom 'clear && echo TMUX ZOOM && read' \; swap-pane -s tmux-zoom.0 \; select-window -t tmux-zoom
+unbind o
+bind o last-window \; swap-pane -s tmux-zoom.0 \; kill-window -t tmux-zoom
+# or maybe just bind to a single key
+#bind C-k run "if [[ $(tmux list-window) =~ ZOOM ]]; then tmux last-window; tmux swap-pane -s ZOOM.2; tmux kill-window -t ZOOM; else tmux new-window -d -n ZOOM; tmux swap-pane -s ZOOM.1; tmux select-window -t ZOOM;fi"
+setw -g aggressive-resize on
+
