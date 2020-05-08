@@ -3,3 +3,15 @@ syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
+
+set noerrorbells             " No beeps
+set number                   " Show line numbers
+set encoding=utf-8              " Set default encoding to UTF-8
+set backspace=indent,eol,start  " Makes backspace key more powerful.
+
+" color
+syntax enable
+set t_Co=256
+set background=dark
+let g:molokai_original = 1
+let g:rehash256 = 1
