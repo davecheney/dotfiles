@@ -3,6 +3,6 @@ all: symlinks
 symlinks: $(patsubst %.symlink,~/.%,$(wildcard *.symlink))
 
 ~/.%: %.symlink
-	ln -n $< $@
+	ln -sf $< $@
 
 .PHONY: all symlinks
