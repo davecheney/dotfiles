@@ -72,9 +72,6 @@ bind -r L resize-pane -R 5
 # END:paneresize
 # mouse support - set to on if you want to use the mouse
 
-# Set the default terminal mode to 256color mode
-set -g default-terminal "xterm-256color"
-
 # enable activity alerts
 setw -g monitor-activity on
 set -g visual-activity on
