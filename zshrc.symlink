@@ -1,9 +1,10 @@
 GOROOT=$HOME/go
 GOPATH=$HOME
+PS1='(%~) %# '
 
 PATH=$HOME/bin:$GOROOT/bin:$PATH
 
-export PATH GOPATH
+export PATH GOPATH PS1
 
 setopt PUSHDSILENT
 
