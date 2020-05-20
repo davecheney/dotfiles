@@ -3,8 +3,9 @@ GOPATH=$HOME
 PS1='(%~) %# '
 
 PATH=$HOME/bin:$GOROOT/bin:$PATH
+CDPATH=.:${GOPATH}/src/code.google.com/p:${GOPATH}/src/github.com:${GOPATH}/src/golang.org/x
 
-export PATH GOPATH PS1
+export PATH GOPATH PS1 CDPATH
 
 setopt PUSHDSILENT
 
