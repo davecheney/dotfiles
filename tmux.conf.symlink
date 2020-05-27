@@ -68,10 +68,6 @@ set-option -g renumber-windows on
 # bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"
 # bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -in -selection clipboard"
 
-# macOS system clipboard
-bind -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
-bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "pbcopy"
-
 set -g mouse on
 set-option -g status-keys vi
 set-option -g set-titles on
