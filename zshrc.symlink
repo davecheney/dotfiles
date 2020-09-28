@@ -2,10 +2,9 @@ GOROOT=$HOME/go
 GOPATH=$HOME
 PS1='(%~) %# '
 
-PATH=$HOME/bin:$GOROOT/bin:$PATH
-CDPATH=.:${GOPATH}/src/code.google.com/p:${GOPATH}/src/github.com:${GOPATH}/src/golang.org/x
+path=(${HOME}/bin ${GOROOT}/bin $path)
 
-export PATH GOPATH PS1 CDPATH
+export PATH GOPATH PS1
 
 setopt PUSHDSILENT
 
@@ -24,3 +23,16 @@ setopt hist_verify
 setopt inc_append_history
 # share command history data
 setopt share_history
+
+cover () {
+	t=$(mktemp)
+	go test $COVERFLAGS -coverprofile=$t $@ && go tool cover -func=$t && unlink $t
+}
+
+cover-web() {
+	t=$(mktemp)
+	go test $COVERFLAGS -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
+}
+
+alias pprof="go tool pprof -http=:"
+alias gb="go install -v ./... && go test ./..."
