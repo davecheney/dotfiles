@@ -1,5 +1,11 @@
 [alias]
-  wip = for-each-ref --sort='-authordate:iso8601' --count 20 --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+	wip = for-each-ref --sort='-authordate:iso8601' --count 20 --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
 [user]
 	name = Dave Cheney
 	email = dave@cheney.net
+[github]
+	user = davecheney
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
