@@ -25,12 +25,12 @@ setopt inc_append_history
 setopt share_history
 
 cover () {
-	t=$(mktemp)
+	t=$(mktemp -t cover)
 	go test $COVERFLAGS -coverprofile=$t $@ && go tool cover -func=$t && unlink $t
 }
 
 cover-web() {
-	t=$(mktemp)
+	t=$(mktemp -t cover)
 	go test $COVERFLAGS -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
 }
 
