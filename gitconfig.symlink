@@ -1,5 +1,6 @@
 [alias]
 	wip = for-each-ref --sort='-authordate:iso8601' --count 20 --format=' %(color:green)%(authordate:relative)%09%(color:white)%(refname:short)' refs/heads
+	recent = branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\"
 [user]
 	name = Dave Cheney
 	email = dave@cheney.net
