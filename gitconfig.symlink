@@ -3,3 +3,5 @@
 [user]
 	name = Dave Cheney
 	email = dave@cheney.net
+[init]
+	defaultBranch = master
