@@ -37,3 +37,4 @@ cover-web() {
 alias pprof="go tool pprof -http=:"
 alias gb="go install -v -ldflags=-w\ -s ./... && go test ./..."
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias k='kubectl'
