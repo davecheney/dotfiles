@@ -1,5 +1,5 @@
-GOROOT=$HOME/go
-GOPATH=$HOME
+GOROOT=${GOROOT:-$HOME/go}
+GOPATH=${GOPATH:-$HOME}
 PS1='(%~) %# '
 
 path=(${HOME}/bin ${GOROOT}/bin $path)
