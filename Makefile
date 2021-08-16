@@ -4,9 +4,9 @@ symlinks: $(patsubst %.symlink,~/.%,$(wildcard *.symlink))
 
 ~/.%: %.symlink
 ifeq ($(CODESPACES),true)
-	ln -f ~/.dotfiles/$< $@
+	ln -f $(CURDIR)/$< $@
 else
-	ln -sf ~/.dotfiles/$< $@
+	ln -sf $(CURDIR)/$< $@
 endif
 
 .PHONY: all symlinks
