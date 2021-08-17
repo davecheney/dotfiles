@@ -1,10 +1,11 @@
 GOROOT=${GOROOT:-$HOME/go}
 GOPATH=${GOPATH:-$HOME}
 PS1='(%~) %# '
+GOPRIVATE=*github.com/github/*
 
 path=(${HOME}/bin ${GOROOT}/bin $path)
 
-export PATH GOPATH PS1
+export PATH GOPATH PS1 GOPRIVATE
 
 setopt PUSHDSILENT
 
