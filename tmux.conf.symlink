@@ -5,6 +5,7 @@ bind C-a send-prefix
 set -g base-index 1
 set -g history-limit 10000
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
+set-option -g default-shell /bin/zsh
 
 # split panes using | and -
 bind | split-window -h -c "#{pane_current_path}"
