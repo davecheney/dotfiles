@@ -39,3 +39,4 @@ alias pprof="go tool pprof -http=:"
 alias gb="go install -v -ldflags=-w\ -s ./... && go test ./..."
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias k='kubectl'
+alias kshell='kubectl run -it --image bash --restart Never --rm shell'
