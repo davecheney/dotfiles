@@ -8,6 +8,7 @@
 	user = davecheney
 [push]
 	default = simple
+	autoSetupRemote = true
 [credential]
 	helper = osxkeychain
 [init]
