@@ -1,11 +1,10 @@
-TINYGOROOT=${TINYGOROOT:-$HOME/devel/tinygo}
 GOPATH=${GOPATH:-$HOME}
 PS1='(%~) %# '
 GOPRIVATE=*github.com/github/*
 
 path=(${HOME}/bin /opt/homebrew/bin $path)
 
-export PATH GOPATH PS1 GOPRIVATE TINYGOROOT
+export PATH GOPATH PS1 GOPRIVATE
 
 setopt PUSHDSILENT
 
