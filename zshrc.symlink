@@ -1,11 +1,11 @@
-GOROOT=${GOROOT:-$HOME/go}
+TINYGOROOT=${TINYGOROOT:-$HOME/devel/tinygo}
 GOPATH=${GOPATH:-$HOME}
 PS1='(%~) %# '
 GOPRIVATE=*github.com/github/*
 
-path=(${HOME}/bin ${GOROOT}/bin $path)
+path=(${HOME}/bin /opt/homebrew/bin $path)
 
-export PATH GOPATH PS1 GOPRIVATE
+export PATH GOPATH PS1 GOPRIVATE TINYGOROOT
 
 setopt PUSHDSILENT
 
@@ -35,8 +35,20 @@ cover-web() {
 	go test $COVERFLAGS -coverprofile=$t $@ && go tool cover -html=$t && unlink $t
 }
 
+# Extract and pretty-print JSON from an image's UserComment field
+exifjson() {
+    if [[ -z "$1" ]]; then
+        echo "Usage: exifjson <filename>"
+        return 1
+    fi
+    exiftool -json "$1" | jq '.[0].UserComment | fromjson'
+}
+
 alias pprof="go tool pprof -http=:"
-alias gb="go install -v -ldflags=-w\ -s ./... && go test ./..."
+alias gb="go install -v ./... && go test ./..."
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 alias k='kubectl'
 alias kshell='kubectl run -it --image bash --restart Never --rm shell'
+
+# Machine-local settings and secrets; not tracked in the dotfiles repo.
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
