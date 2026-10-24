@@ -15,3 +15,6 @@
 	defaultBranch = master
 [pull]
 	rebase = false
+[hook "no-attribution"]
+	event = commit-msg
+	command = ~/.dotfiles/git/hooks/commit-msg

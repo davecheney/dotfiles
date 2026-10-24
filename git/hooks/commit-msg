@@ -1,0 +1,7 @@
+#!/bin/sh
+# Reject commit messages that contain coding tool attribution.
+pattern='noreply@anthropic\.com|co-authored-by:.*(claude|anthropic|copilot|cursor|codex|gemini|aider|chatgpt|openai)|generated (with|by) .*(claude|copilot|cursor|chatgpt|codex|gemini)'
+if sed -e '/^# -* >8 -*$/,$d' -e '/^#/d' "$1" | grep -inE "$pattern" >&2; then
+	echo "commit-msg: remove coding tool attribution from the commit message." >&2
+	exit 1
+fi
