@@ -12,7 +12,7 @@
 [credential]
 	helper = osxkeychain
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [pull]
 	rebase = false
 [hook "no-attribution"]
