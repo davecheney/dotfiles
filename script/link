@@ -1,0 +1,47 @@
+#!/bin/sh
+# Link tracked dotfiles into $HOME.
+#   foo.symlink   -> ~/.foo
+#   home/<path>   -> ~/<path>, parent directories are created as real directories
+set -eu
+
+cd "$(dirname "$0")/.."
+repo=$(pwd -P)
+status=0
+
+link() {
+	src="$repo/$1"
+	dst="$2"
+	dir=$(dirname "$dst")
+
+	if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$src" ]; then
+		return
+	fi
+
+	if [ -L "$dir" ]; then
+		case "$(readlink -f "$dir")" in
+		"$repo"/*)
+			echo "skip $dst: $dir links into $repo. Replace it with a real directory, then run make again." >&2
+			status=1
+			return
+			;;
+		esac
+	fi
+
+	mkdir -p "$dir"
+	if [ -e "$dst" ] || [ -L "$dst" ]; then
+		echo "move $dst to $dst.bak"
+		mv "$dst" "$dst.bak"
+	fi
+	ln -s "$src" "$dst"
+	echo "link $dst"
+}
+
+for f in $(git ls-files ':(top,glob)*.symlink'); do
+	link "$f" "$HOME/.${f%.symlink}"
+done
+
+for f in $(git ls-files home); do
+	link "$f" "$HOME/${f#home/}"
+done
+
+exit $status
