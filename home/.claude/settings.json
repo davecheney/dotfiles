@@ -1,4 +1,23 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(go test:*)",
+      "Bash(go run:*)",
+      "Bash(make test-all:*)",
+      "Bash(git stash:*)",
+      "Bash(golangci-lint run:*)",
+      "Bash(git pull:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(head:*)",
+      "Bash(awk:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "awaySummaryEnabled": false,
   "attribution": {
     "commit": "",
     "pr": ""
